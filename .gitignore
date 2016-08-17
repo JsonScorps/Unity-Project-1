@@ -28,6 +28,28 @@ local.properties
 # PDT-specific
 .buildpath
 
+#################
+## Unity
+#################
+
+# Ignore everything
+/*
+/*/
+
+# Inverse ignore some stuff
+!/Assets/
+!/ProjectSettings/
+!.gitignore
+
+# OS Stuff
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+$RECYCLE.BIN/
+Desktop.ini
 
 #################
 ## Visual Studio
