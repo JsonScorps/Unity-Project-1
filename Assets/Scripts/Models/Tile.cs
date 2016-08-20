@@ -83,8 +83,34 @@ public class Tile : IXmlSerializable {
 		cbTileChanged -= callback;
 	}
 
-	public bool PlaceFurniture(Furniture objInstance) {
-		if(objInstance == null) {
+	public bool PlaceInventory(Inventory inv) {
+		if (inv == null) {
+			inventory = null;
+			return true;
+		}
+
+		if (inventory != null) {
+			if (inventory.inventoryType != inv.inventoryType) {
+				Debug.LogError ("tile already contains different object");
+				return false;
+			}
+
+			if (inventory.stackSize + inv.stackSize > inv.maxStackSize) {
+				Debug.LogError ("item would exceed max stack size");
+				return false;
+			}
+
+			//merge stacks
+			inventory.stackSize += inv.stackSize;
+			return true;
+		}
+
+		inventory = inv;
+		return true;
+	}
+
+	public bool PlaceFurniture(Furniture furnInstance) {
+		if(furnInstance == null) {
 			//uninstall object
 			furniture = null;
 			return true;
@@ -95,7 +121,7 @@ public class Tile : IXmlSerializable {
 			return false;
 		}
 
-		furniture = objInstance;
+		furniture = furnInstance;
 		return true;
 	}
 

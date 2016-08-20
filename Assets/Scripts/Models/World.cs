@@ -13,6 +13,7 @@ public class World : IXmlSerializable {
 	public List<Character> characters;
 	public List<Furniture> furnitures;
 	public List<Room> rooms;
+	public List<Inventory> inventories;
 
 	//pathfinding graph
 	public Path_TileGraph tileGraph;
@@ -38,6 +39,11 @@ public class World : IXmlSerializable {
 		CreateCharacter (GetTileAt (Width/2, Height/2) );
 	}
 
+	//Default constructor for Xml Serialization
+	public World() {
+
+	}
+		
 	public Room GetOutsideRoom() {
 		return rooms [0];
 	}
@@ -84,8 +90,9 @@ public class World : IXmlSerializable {
 
 		CreateFurniturePrototypes ();
 
-		characters = new List<Character> ();
-		furnitures = new List<Furniture> ();
+		characters 	= new List<Character> ();
+		furnitures 	= new List<Furniture> ();
+		inventories = new List<Inventory> ();
 
 	}
 
@@ -259,10 +266,6 @@ public class World : IXmlSerializable {
 	/// 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public World() {
-
-	}
-
 	public XmlSchema GetSchema() {
 		return null;
 	}
@@ -323,6 +326,10 @@ public class World : IXmlSerializable {
 				break;
 			}
 		}
+
+		//DEBUG ONLY
+		Inventory inv = new Inventory();
+		inventories.Add (inv);
 
 	}
 

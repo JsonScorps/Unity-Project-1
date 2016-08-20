@@ -3,9 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
     <ProjectGuid>{AB82B7DF-12EF-094E-8AA2-632EB72585BB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -34,55 +33,63 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Editor\Data\Managed\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Controllers\BuildController.cs" />
-     <Compile Include="Assets\Scripts\Controllers\CharacterSpriteController.cs" />
-     <Compile Include="Assets\Scripts\Controllers\FurnitureSpriteController.cs" />
-     <Compile Include="Assets\Scripts\Controllers\JobSpirteController.cs" />
-     <Compile Include="Assets\Scripts\Controllers\MouseController.cs" />
-     <Compile Include="Assets\Scripts\Controllers\SoundController.cs" />
-     <Compile Include="Assets\Scripts\Controllers\TileSpriteController.cs" />
-     <Compile Include="Assets\Scripts\Controllers\WorldController.cs" />
-     <Compile Include="Assets\Scripts\Models\Character.cs" />
-     <Compile Include="Assets\Scripts\Models\Furniture.cs" />
-     <Compile Include="Assets\Scripts\Models\FurnitureActions.cs" />
-     <Compile Include="Assets\Scripts\Models\Inventory.cs" />
-     <Compile Include="Assets\Scripts\Models\Job.cs" />
-     <Compile Include="Assets\Scripts\Models\JobQueue.cs" />
-     <Compile Include="Assets\Scripts\Models\Room.cs" />
-     <Compile Include="Assets\Scripts\Models\Tile.cs" />
-     <Compile Include="Assets\Scripts\Models\World.cs" />
-     <Compile Include="Assets\Scripts\Pathfinding\Path_AStar.cs" />
-     <Compile Include="Assets\Scripts\Pathfinding\Path_Edge.cs" />
-     <Compile Include="Assets\Scripts\Pathfinding\Path_Node.cs" />
-     <Compile Include="Assets\Scripts\Pathfinding\Path_TileGraph.cs" />
-     <Compile Include="Assets\Scripts\UI\FurnitureInfo.cs" />
-     <Compile Include="Assets\Scripts\UI\RoomInfo.cs" />
-     <Compile Include="Assets\Scripts\UI\TileInfo.cs" />
-     <Compile Include="Assets\Scripts\Utilities\AutomaticVerticalSize.cs" />
-     <Compile Include="Assets\Scripts\Utilities\Priority_Queue\Priority Queue\FastPriorityQueue.cs" />
-     <Compile Include="Assets\Scripts\Utilities\Priority_Queue\Priority Queue\FastPriorityQueueNode.cs" />
-     <Compile Include="Assets\Scripts\Utilities\Priority_Queue\Priority Queue\IPriorityQueue.cs" />
-     <Compile Include="Assets\Scripts\Utilities\Priority_Queue\Priority Queue\SimplePriorityQueue.cs" />
-     <Compile Include="Assets\Scripts\Utilities\SimplePool.cs" />
-     <None Include="Assets\Scripts\Utilities\Priority_Queue\GITHUB PAGE.txt" />
-     <None Include="Assets\Scripts\Utilities\Priority_Queue\LICENSE.txt" />
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\Scripts\Controllers\BuildController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\CharacterSpriteController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\FurnitureSpriteController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\JobSpirteController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\MouseController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\SoundController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\TileSpriteController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\WorldController.cs" />
+    <Compile Include="Assets\Scripts\Models\Character.cs" />
+    <Compile Include="Assets\Scripts\Models\Furniture.cs" />
+    <Compile Include="Assets\Scripts\Models\FurnitureActions.cs" />
+    <Compile Include="Assets\Scripts\Models\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Models\Job.cs" />
+    <Compile Include="Assets\Scripts\Models\JobQueue.cs" />
+    <Compile Include="Assets\Scripts\Models\Room.cs" />
+    <Compile Include="Assets\Scripts\Models\Tile.cs" />
+    <Compile Include="Assets\Scripts\Models\World.cs" />
+    <Compile Include="Assets\Scripts\Pathfinding\Path_AStar.cs" />
+    <Compile Include="Assets\Scripts\Pathfinding\Path_Edge.cs" />
+    <Compile Include="Assets\Scripts\Pathfinding\Path_Node.cs" />
+    <Compile Include="Assets\Scripts\Pathfinding\Path_TileGraph.cs" />
+    <Compile Include="Assets\Scripts\UI\FurnitureInfo.cs" />
+    <Compile Include="Assets\Scripts\UI\RoomInfo.cs" />
+    <Compile Include="Assets\Scripts\UI\TileInfo.cs" />
+    <Compile Include="Assets\Scripts\Utilities\AutomaticVerticalSize.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Priority_Queue\Priority Queue\FastPriorityQueue.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Priority_Queue\Priority Queue\FastPriorityQueueNode.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Priority_Queue\Priority Queue\IPriorityQueue.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Priority_Queue\Priority Queue\SimplePriorityQueue.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SimplePool.cs" />
+    <None Include="Assets\Resources\Fonts\Cubellan_v_0_7\Read_Me.txt" />
+    <None Include="Assets\Scripts\Utilities\Priority_Queue\GITHUB PAGE.txt" />
+    <None Include="Assets\Resources\Fonts\osp.foundry.alfphabet\OFL-1.1.txt" />
+    <None Include="Assets\Resources\Fonts\osp.foundry.alfphabet\OFL-FAQ.txt" />
+    <None Include="Assets\Resources\Fonts\Cubellan_v_0_7\Cubellan_License_SIL_OFL.txt" />
+    <None Include="Assets\Resources\Fonts\tgl\OFL-FAQ.txt" />
+    <None Include="Assets\Resources\Fonts\osp.foundry.alfphabet\README.txt" />
+    <None Include="Assets\Resources\Fonts\tgl\Open Font License.txt" />
+    <None Include="Assets\Resources\Fonts\osp.foundry.alfphabet\FONTLOG.txt" />
+    <None Include="Assets\Scripts\Utilities\Priority_Queue\LICENSE.txt" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:\Program Files\Unity\Editor\Data\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>C:\Program Files\Unity\Editor\Data\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -92,5 +99,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>
