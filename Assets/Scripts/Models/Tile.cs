@@ -25,7 +25,9 @@ public class Tile : IXmlSerializable {
 	}
 
 	// stuff lying around
-	Inventory inventory;
+	public Inventory inventory {
+		get; protected set;
+	}
 
 	// solid stuff like walls, doors, etc
 	public Furniture furniture {
@@ -95,17 +97,19 @@ public class Tile : IXmlSerializable {
 				return false;
 			}
 
-			if (inventory.stackSize + inv.stackSize > inv.maxStackSize) {
-				Debug.LogError ("item would exceed max stack size");
-				return false;
+			int numToMove = inv.stackSize;
+			if (inventory.stackSize + numToMove > inventory.maxStackSize) {
+				numToMove = inventory.maxStackSize - inventory.stackSize;
 			}
 
-			//merge stacks
-			inventory.stackSize += inv.stackSize;
+			inventory.stackSize += numToMove;
+			inv.stackSize -= numToMove;
 			return true;
 		}
 
-		inventory = inv;
+		inventory = inv.Clone ();
+		inventory.tile = this;
+		inv.stackSize = 0;
 		return true;
 	}
 

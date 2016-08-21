@@ -13,10 +13,11 @@ public class World : IXmlSerializable {
 	public List<Character> characters;
 	public List<Furniture> furnitures;
 	public List<Room> rooms;
-	public List<Inventory> inventories;
 
 	//pathfinding graph
 	public Path_TileGraph tileGraph;
+	//inventory manager
+	public InventoryManager inventoryManager;
 
 	Dictionary<string, Furniture> furniturePrototypes;
 
@@ -28,6 +29,7 @@ public class World : IXmlSerializable {
 
 	Action<Furniture> cbFurnitureCreated;
 	Action<Character> cbCharacterCreated;
+	Action<Inventory> cbInventoryCreated;
 	Action<Tile> cbTileChanged;
 
 	public JobQueue jobQueue;
@@ -92,7 +94,7 @@ public class World : IXmlSerializable {
 
 		characters 	= new List<Character> ();
 		furnitures 	= new List<Furniture> ();
-		inventories = new List<Inventory> ();
+		inventoryManager = new InventoryManager ();
 
 	}
 
@@ -226,6 +228,14 @@ public class World : IXmlSerializable {
 		cbCharacterCreated -= callbackfunc;
 	}
 
+	public void RegisterInventoryCreated (Action<Inventory> callbackfunc) {
+		cbInventoryCreated += callbackfunc;
+	}
+
+	public void UnregisterInventoryCreated (Action<Inventory> callbackfunc) {
+		cbInventoryCreated -= callbackfunc;
+	}
+
 	public void RegisterTileChanged (Action<Tile> callbackfunc) {
 		cbTileChanged += callbackfunc;
 	}
@@ -329,8 +339,11 @@ public class World : IXmlSerializable {
 
 		//DEBUG ONLY
 		Inventory inv = new Inventory();
-		inventories.Add (inv);
-
+		Tile t = GetTileAt (Width / 2, Height / 2);
+		inventoryManager.PlaceInventory (t, inv);
+		if (cbInventoryCreated != null) {
+			cbInventoryCreated (t.inventory);
+		}
 	}
 
 	void ReadXml_Tiles(XmlReader reader) {
