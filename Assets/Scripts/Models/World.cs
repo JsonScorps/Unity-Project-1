@@ -19,7 +19,8 @@ public class World : IXmlSerializable {
 	//inventory manager
 	public InventoryManager inventoryManager;
 
-	Dictionary<string, Furniture> furniturePrototypes;
+	Dictionary<string, Furniture> 	furniturePrototypes;
+	public Dictionary<string, Job> 	furnitureJobPrototypes;
 
 	// tile width of the world.
 	public int Width { get; protected set; }
@@ -122,6 +123,7 @@ public class World : IXmlSerializable {
 	void CreateFurniturePrototypes() {
 		
 		furniturePrototypes = new Dictionary<string, Furniture>();
+		furnitureJobPrototypes = new Dictionary<string, Job> ();
 
 		furniturePrototypes.Add ("Wall",
 			new Furniture(
@@ -131,7 +133,10 @@ public class World : IXmlSerializable {
 					1,		//height
 					true,	//roomEnclosure
 					true	//linkstoNeighbor
-		)
+			)
+		);
+		furnitureJobPrototypes.Add("Wall",
+			new Job(null, "Wall", FurnitureActions.JobComplete_Furniture, 1f, new Inventory[]{ new Inventory("Iron", 5, 0) })
 		);
 
 		furniturePrototypes.Add ("Door",

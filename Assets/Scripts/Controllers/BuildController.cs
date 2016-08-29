@@ -45,11 +45,17 @@ public class BuildController : MonoBehaviour {
 				&& t.pendingFurnitureJob == null) {
 				//valid tile -> create job
 
-					Job j = new Job (t, furnitureType, (theJob) => {
-					WorldController.Instance.world.PlaceFurniture (furnitureType, theJob.tile);
-					
-					t.pendingFurnitureJob = null;
-				});
+				Job j;
+
+				if (WorldController.Instance.world.furnitureJobPrototypes.ContainsKey (furnitureType)) {
+					j = WorldController.Instance.world.furnitureJobPrototypes [furnitureType].Clone();
+
+					j.tile = t;
+				} 
+				else {
+					Debug.LogError ("No job prototype for '"+furnitureType+"'");
+					j = new Job (t, furnitureType, FurnitureActions.JobComplete_Furniture, 0.1f, null);
+				}
 
 				t.pendingFurnitureJob = j;
 
@@ -64,4 +70,5 @@ public class BuildController : MonoBehaviour {
 			t.Type = buildTileType;
 		}
 	}
+
 }

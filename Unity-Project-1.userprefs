@@ -1,13 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Models\World.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Models\Character.cs">
     <Files>
-      <File FileName="Assets\Scripts\Models\InventoryManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Models\Tile.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Models\Inventory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Models\World.cs" Line="345" Column="35" />
-      <File FileName="Assets\Scripts\Controllers\CharacterSpriteController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Controllers\InventorySpriteController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Models\Inventory.cs" Line="23" Column="8" />
+      <File FileName="Assets\Scripts\Models\World.cs" Line="23" Column="34" />
+      <File FileName="Assets\Scripts\Models\Job.cs" Line="8" Column="19" />
+      <File FileName="Assets\Scripts\Models\Furniture.cs" Line="41" Column="1" />
+      <File FileName="Assets\Scripts\Controllers\BuildController.cs" Line="53" Column="17" />
+      <File FileName="Assets\Scripts\Models\FurnitureActions.cs" Line="41" Column="3" />
+      <File FileName="Assets\Scripts\Models\Character.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
