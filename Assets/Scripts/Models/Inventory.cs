@@ -8,7 +8,7 @@ public class Inventory {
 	public string inventoryType = "Iron";
 
 	public int maxStackSize = 50;
-	public int stackSize = 1;
+	public int stackSize = 20;
 
 	public Tile tile;
 	public Character character;

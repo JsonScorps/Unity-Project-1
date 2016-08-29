@@ -30,10 +30,7 @@ public class MouseController : MonoBehaviour {
 	}
 
 	public Tile GetMouseOverTile() {
-		return WorldController.Instance.world.GetTileAt (
-			Mathf.RoundToInt(currFramePosition.x),
-			Mathf.RoundToInt(currFramePosition.y)
-		);
+		return WorldController.Instance.GetTileAtWorldCoord (currFramePosition);
 	}
 
 	// Update is called once per frame

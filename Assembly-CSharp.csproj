@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Utilities\Priority_Queue\Priority Queue\FastPriorityQueueNode.cs" />
      <Compile Include="Assets\Scripts\Utilities\Priority_Queue\Priority Queue\IPriorityQueue.cs" />
      <Compile Include="Assets\Scripts\Utilities\Priority_Queue\Priority Queue\SimplePriorityQueue.cs" />
+     <Compile Include="Assets\Scripts\Utilities\SetSortingLayer.cs" />
      <Compile Include="Assets\Scripts\Utilities\SimplePool.cs" />
      <None Include="Assets\Resources\Fonts\Cubellan_v_0_7\Read_Me.txt" />
      <None Include="Assets\Scripts\Utilities\Priority_Queue\GITHUB PAGE.txt" />

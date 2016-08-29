@@ -344,6 +344,19 @@ public class World : IXmlSerializable {
 		if (cbInventoryCreated != null) {
 			cbInventoryCreated (t.inventory);
 		}
+		inv = new Inventory();
+		t = GetTileAt (Width / 2 - 1, Height / 2 + 1);
+		inventoryManager.PlaceInventory (t, inv);
+		if (cbInventoryCreated != null) {
+			cbInventoryCreated (t.inventory);
+		}
+		inv = new Inventory();
+		t = GetTileAt (Width / 2 + 1, Height / 2 + 1);
+		inventoryManager.PlaceInventory (t, inv);
+		if (cbInventoryCreated != null) {
+			cbInventoryCreated (t.inventory);
+		}
+		//End Debug
 	}
 
 	void ReadXml_Tiles(XmlReader reader) {
