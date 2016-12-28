@@ -22,7 +22,15 @@ public class Character: IXmlSerializable {
 	public Tile currTile {
 		get; protected set;
 	}
-	Tile destTile;
+	Tile destTile {
+		get;
+		set {
+			if (destTile != value) {
+				destTile = value;
+				pathAStar = null;
+			}
+		}
+	}
 	Tile nextTile; // next tile in pathfinding queue
 
 	Path_AStar pathAStar;
@@ -34,6 +42,7 @@ public class Character: IXmlSerializable {
 	Action<Character> cbCharacterChanged;
 
 	Job myJob;
+	Inventory inventory;
 
 	public Character() {
 		// XML serialization only!
@@ -43,25 +52,77 @@ public class Character: IXmlSerializable {
 		currTile = destTile = nextTile = tile;
 	}
 
-	void Update_Job(float deltaTime) {
+	void GetNewJob()  {
+
+		//get a job
+		myJob = currTile.world.jobQueue.Dequeue ();
+		destTile = myJob.tile;
+		myJob.RegisterJobCompleteCallback (OnJobEnded);
+		myJob.RegisterJobCancelCallback (OnJobEnded);
+
+		//is job reachable ?
+		pathAStar = new Path_AStar(currTile.world, currTile, destTile);
+		if (pathAStar.Length() == 0) {
+			Debug.LogError ("Path_AStar -- no path found");
+			AbandonJob ();
+			destTile = currTile;
+		}
+	}
+
+	void Update_DoJob(float deltaTime) {
 		
-		//get a job !! 
+		//got a job ? 
 		if (myJob == null) {
 
-			//got a job
-			myJob = currTile.world.jobQueue.Dequeue ();
+			GetNewJob ();
 
-			//go to the job
 			if (myJob != null) {
-				destTile = myJob.tile;
-				myJob.RegisterJobCompleteCallback (OnJobEnded);
-				myJob.RegisterJobCancelCallback (OnJobEnded);
+				//no job :(
+				destTile = currTile;
+				return;
 			}
+	
 		}
 
+		//congratz on your new job!
+
+		// 1. check materials on job
+		if (myJob.HasAllMaterials () == false) {
+			//2. check materials on character
+			if (inventory != null) {
+				if (myJob.DesiresInventoryType (inventory)) {
+					//deliver materials
+					if (currTile == myJob.tile) {
+						currTile.world.inventoryManager.PlaceInventory (myJob, inventory);
+
+						if (inventory.stackSize == 0) {
+							inventory = null;
+						} else {
+							inventory = null;
+						}
+
+					} else {
+						destTile = myJob.tile;
+						return;
+					}
+
+				} else {
+					if(	currTile.world.inventoryManager.PlaceInventory (currTile, inventory) == false) {
+						inventory = null;
+					}
+				}
+			}
+
+			//get materials
+
+
+			return;
+		}
+
+		destTile = myJob.tile;
 
 		//already there?
-		if (myJob != null && currTile == myJob.tile) {
+		if (currTile == myJob.tile) {
 			myJob.DoWork (deltaTime);
 		}
 			
@@ -69,7 +130,6 @@ public class Character: IXmlSerializable {
 
 	public void AbandonJob() {
 		nextTile = destTile = currTile;
-		pathAStar = null;
 		currTile.world.jobQueue.Enqueue (myJob);
 		myJob = null;
 	}
@@ -90,7 +150,6 @@ public class Character: IXmlSerializable {
 				if (pathAStar.Length() == 0) {
 					Debug.LogError ("Path_AStar -- no path found");
 					AbandonJob ();
-					pathAStar = null;
 					return;
 				}
 
@@ -146,7 +205,7 @@ public class Character: IXmlSerializable {
 
 	public void Update(float deltaTime) {
 
-		Update_Job (deltaTime);
+		Update_DoJob (deltaTime);
 		Update_Movement (deltaTime);
 
 		if (cbCharacterChanged != null) {

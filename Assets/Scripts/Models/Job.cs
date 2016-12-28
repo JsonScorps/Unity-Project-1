@@ -14,13 +14,12 @@ public class Job {
 	Action<Job> cbJobComplete;
 	Action<Job> cbJobCancel;
 
-	Dictionary<string, Inventory> inventoryRequirements;
+	public Dictionary <string, Inventory> inventoryRequirements;
 
 	public Job(Tile tile,string jobObjectType, Action<Job> cbJobComplete, float jobTime, Inventory[] inventoryRequirements) {
 		this.tile = tile;
 		this.jobObjectType = jobObjectType;
-		this.cbJobComplete += cbJobComplete;
-		//this.cbJobComplete += cbJobCancel;
+		this.cbJobComplete += cbJobComplete; 
 		this.jobTime = jobTime;
 
 		this.inventoryRequirements = new Dictionary<string, Inventory> ();
@@ -81,4 +80,24 @@ public class Job {
 		if(cbJobCancel != null)
 			cbJobCancel(this);
 	}
+
+	public bool HasAllMaterials() {
+		foreach (Inventory inv in inventoryRequirements.Values) {
+			if (inv.maxStackSize > inv.stackSize)
+				return false;
+		}
+
+		return true;
+	}
+
+	public bool DesiresInventoryType(Inventory inv) {
+		if(inventoryRequirements.ContainsKey(inv.inventoryType) == false) {
+			return false;
+		}
+
+		if(inventoryRequirements[inv.inventoryType].stackSize >= inventoryRequirements[inv.inventoryType].maxStackSize) {
+			return false;
+		}
+
+		return true;
 }
